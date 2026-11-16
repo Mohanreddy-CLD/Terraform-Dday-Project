@@ -33,6 +33,12 @@ variable "vpc_tags" {
   default     = {}
 }
 
+variable "igw_tags" {
+  type        = map(string)
+  description = "A map of tags to assign to the internet gateway"
+  default     = {}
+}
+
 variable "public_subnet_tags" {
   type        = map(string)
   description = "A map of tags to assign to the public subnets"
@@ -51,9 +57,60 @@ variable "database_subnet_tags" {
   default     = {}
 }
 
-variable "igw_tags" {
+variable "eip_tags" {
   type        = map(string)
-  description = "A map of tags to assign to the internet gateway"
+  description = "A map of tags to assign to the elastic IPs"
   default     = {}
 }
 
+variable "nat_gateway_tags" {
+  type        = map(string)
+  description = "A map of tags to assign to the NAT gateways"
+  default     = {}
+}
+
+variable "public_route_table_tags" {
+  type        = map(string)
+  description = "A map of tags to assign to the public route tables"
+  default     = {}
+}
+
+variable "private_route_table_tags" {
+  type        = map(string)
+  description = "A map of tags to assign to the private route tables"
+  default     = {}
+}
+
+variable "database_route_table_tags" {
+  type        = map(string)
+  description = "A map of tags to assign to the database route tables"
+  default     = {}
+}
+
+variable "create_peering_connection" {
+  type        = bool
+  description = "Controls whether to create the VPC peering connection"
+  default     = false
+}
+
+
+# variable "auto_accept" {
+#   type        = bool
+#   description = "Accept the peering (both VPCs need to be in the same AWS account and region)"
+#   default     = true
+# }
+
+# variable "vpc_peering_tags" {
+#   type        = map(string)
+#   description = "A map of tags to assign to the VPC peering connection"
+#   default     = {}
+# }
+
+# variable "is_peering_required" {
+#     default = false
+# }
+
+# variable "vpc_peering_tags" {
+#     type = map(string)
+#     default = {}
+# }

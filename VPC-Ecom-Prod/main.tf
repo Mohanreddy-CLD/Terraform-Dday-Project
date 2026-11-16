@@ -1,11 +1,11 @@
 module "vpc" {
-  source             = "../Ecom-VPC-module"
+  source = "../Ecom-VPC-module"
   # project            = "Ecom-VPC"
   # environment        = "dev"
   # public_subnet_cidr = ["10.0.1.0/24", "10.0.2.0/24"]
-  project            = var.project
-  environment        = var.environment
-  public_subnet_cidr = var.public_subnet_cidr
-  private_subnet_cidr = var.private_subnet_cidr
+  project              = var.project
+  environment          = var.environment
+  public_subnet_cidr   = var.public_subnet_cidr
+  private_subnet_cidr  = var.private_subnet_cidr
   database_subnet_cidr = var.database_subnet_cidr
 }

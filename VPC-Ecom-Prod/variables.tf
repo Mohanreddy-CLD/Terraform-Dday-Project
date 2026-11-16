@@ -1,4 +1,4 @@
-variable  "project" {
+variable "project" {
   default = "Ecom-VPC"
 }
 
@@ -17,3 +17,4 @@ variable "private_subnet_cidr" {
 variable "database_subnet_cidr" {
   default = ["10.0.21.0/24", "10.0.22.0/24"]
 }
+
