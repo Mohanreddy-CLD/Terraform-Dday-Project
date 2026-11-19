@@ -1,5 +1,6 @@
 module "vpc" {
-  source = "../Ecom-VPC-module"
+  # source = "../Ecom-VPC-module"
+  source = "git:://github.com/Mohanreddy-CLD/Terraform-Dday-Project.git/Ecom-VPC-module?ref=main"
   # project            = "Ecom-VPC"
   # environment        = "dev"
   # public_subnet_cidr = ["10.0.1.0/24", "10.0.2.0/24"]

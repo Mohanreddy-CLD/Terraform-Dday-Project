@@ -12,21 +12,6 @@ variable "cidr_block" {
   default     = "10.0.0.0/16"
 }
 
-variable "public_subnet_cidr" {
-  description = "The CIDR block for the public subnet"
-    type        = list(string)
-}
-
-variable "private_subnet_cidr" {
-  description = "The CIDR block for the private subnet"
-    type        = list(string)
-}
-
-variable "database_subnet_cidr" {
-  description = "The CIDR block for the database subnet"
-    type        = list(string)
-}
-
 variable "vpc_tags" {
   type        = map(string)
   description = "A map of tags to assign to the VPC"
@@ -39,16 +24,31 @@ variable "igw_tags" {
   default     = {}
 }
 
+variable "public_subnet_cidr" {
+  description = "The CIDR block for the public subnet"
+    type        = list(string)
+}
+
 variable "public_subnet_tags" {
   type        = map(string)
   description = "A map of tags to assign to the public subnets"
   default     = {}
 }
 
+variable "private_subnet_cidr" {
+  description = "The CIDR block for the private subnet"
+    type        = list(string)
+}
+
 variable "private_subnet_tags" {
   type        = map(string)
   description = "A map of tags to assign to the private subnets"
   default     = {}
+}
+
+variable "database_subnet_cidr" {
+  description = "The CIDR block for the database subnet"
+    type        = list(string)
 }
 
 variable "database_subnet_tags" {
@@ -87,12 +87,14 @@ variable "database_route_table_tags" {
   default     = {}
 }
 
-variable "create_peering_connection" {
-  type        = bool
-  description = "Controls whether to create the VPC peering connection"
-  default     = false
+variable "is_peering_required" {
+    default = false
 }
 
+variable "vpc_peering_tags" {
+    type = map(string)
+    default = {}
+}
 
 # variable "auto_accept" {
 #   type        = bool
