@@ -1,4 +1,4 @@
-resource "aws_vpc" "Ecom-VPC" {
+resource "aws_vpc" "main" {
   cidr_block = var.cidr_block
   instance_tenancy = "default"
   enable_dns_hostnames = true
@@ -15,7 +15,7 @@ resource "aws_vpc" "Ecom-VPC" {
 ##Ecom Prod
 
 resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.Ecom-VPC.id
+  vpc_id = aws_vpc.main.id
 
   tags = merge(
     var.igw_tags,
@@ -28,7 +28,7 @@ resource "aws_internet_gateway" "main" {
 
 resource "aws_subnet" "public" {
   count = length(var.public_subnet_cidr)
-  vpc_id     = aws_vpc.Ecom-VPC.id
+  vpc_id     = aws_vpc.main.id
   cidr_block = var.public_subnet_cidr[count.index]
   availability_zone = local.az_names[count.index]
   map_public_ip_on_launch = true
@@ -44,7 +44,7 @@ resource "aws_subnet" "public" {
 
 resource "aws_subnet" "private" {
   count = length(var.private_subnet_cidr)
-  vpc_id     = aws_vpc.Ecom-VPC.id
+  vpc_id     = aws_vpc.main.id
   cidr_block = var.private_subnet_cidr[count.index]
   availability_zone = local.az_names[count.index]
 
@@ -59,7 +59,7 @@ resource "aws_subnet" "private" {
 
 resource "aws_subnet" "database" {
   count = length(var.database_subnet_cidr)
-  vpc_id     = aws_vpc.Ecom-VPC.id
+  vpc_id     = aws_vpc.main.id
   cidr_block = var.database_subnet_cidr[count.index]
   availability_zone = local.az_names[count.index]
 
@@ -101,7 +101,7 @@ resource "aws_nat_gateway" main {
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.Ecom-VPC.id
+  vpc_id = aws_vpc.main.id
 
   tags = merge(
     var.public_route_table_tags,
@@ -113,7 +113,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.Ecom-VPC.id
+  vpc_id = aws_vpc.main.id
 
   tags = merge(
     var.private_route_table_tags,
@@ -125,7 +125,7 @@ resource "aws_route_table" "private" {
 }
 
 resource "aws_route_table" "database" {
-  vpc_id = aws_vpc.Ecom-VPC.id
+  vpc_id = aws_vpc.main.id
 
   tags = merge(
     var.database_route_table_tags,
