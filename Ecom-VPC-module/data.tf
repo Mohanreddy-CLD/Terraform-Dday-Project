@@ -22,12 +22,12 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-locals {
-  az_names = data.aws_availability_zones.available.names
+# locals {
+#   az_names = data.aws_availability_zones.available.names
 
-  common_tags = {
-    Project     = var.project
-    Environment = var.environment
-    terraform   = "true"
-  }
-}
+#   common_tags = {
+#     Project     = var.project
+#     Environment = var.environment
+#     terraform   = "true"
+#   }
+# }
