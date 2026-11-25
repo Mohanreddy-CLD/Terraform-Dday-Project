@@ -96,6 +96,10 @@ variable "vpc_peering_tags" {
     default = {}
 }
 
+variable "az_names" {
+  type = list(string)
+}
+
 # variable "auto_accept" {
 #   type        = bool
 #   description = "Accept the peering (both VPCs need to be in the same AWS account and region)"
